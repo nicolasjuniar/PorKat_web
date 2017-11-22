@@ -39,9 +39,31 @@ class KateringModel extends CI_Model {
     $this->db->insert('tbl_katering',$DataKatering);
   }
 
-  public function updateKatering($DataKatering)
+  public function updateRating($id_katering)
+  {
+    $this->db->select('round(sum(rating)/count(id_katering),2) as rate');
+    $this->db->from('tbl_ulasan');
+    $this->db->where('id_katering',$id_katering);
+    $this->db->group_by('id_katering');
+    $rating=$this->db->get()->row()->rate;
+
+    $update=array(
+      'rating'=>$rating
+    );
+
+    $this->db->where('id_katering',$id_katering);
+    $this->db->update('tbl_katering',$update);
+  }
+
+  public function updateKateringByNoVerifikasi($DataKatering)
   {
     $this->db->where('no_verifikasi',$DataKatering['no_verifikasi']);
+    $this->db->update('tbl_katering',$DataKatering);
+  }
+
+  public function updateKatering($DataKatering)
+  {
+    $this->db->where('id_katering',$DataKatering['id_katering']);
     $this->db->update('tbl_katering',$DataKatering);
   }
 
@@ -63,9 +85,11 @@ class KateringModel extends CI_Model {
   public function getAllKateringByRating()
   {
     $DataKatering=[];
-    $this->db->select('*');
-    $this->db->from('tbl_katering');
-    $this->db->order_by('rating','desc');
+    $this->db->select('k.id_katering,k.nama_katering,k.no_telp,k.alamat,k.foto,k.rating,k.longitude,k.latitude,coalesce(sum(u.rating)*count(u.id_katering),0) as total_rate');
+    $this->db->from('tbl_katering k');
+    $this->db->join('tbl_ulasan u','k.id_katering=u.id_katering','left');
+    $this->db->order_by('total_rate','desc');
+    $this->db->group_by('k.id_katering');
     $DataKatering=$this->db->get('')->result_array();
 		return $DataKatering;
   }

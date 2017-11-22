@@ -38,9 +38,9 @@ class PelangganModel extends CI_Model {
     $this->db->insert('tbl_pelanggan',$DataPelanggan);
   }
 
-  public function updatePassword($id_pelanggan,$DataPelanggan)
+  public function updatePelanggan($DataPelanggan)
   {
-    $this->db->where('id_pelanggan',$id_pelanggan);
+    $this->db->where('id_pelanggan',$DataPelanggan['id_pelanggan']);
     $this->db->update('tbl_pelanggan',$DataPelanggan);
   }
 }

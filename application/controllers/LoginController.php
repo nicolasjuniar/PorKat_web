@@ -15,8 +15,8 @@ class LoginController extends CI_Controller {
   public function Login()
   {
     $DataLogin=array(
-      'id_pengguna'=>$this->input->post('id_pengguna'),
-      'katasandi'=>$this->input->post('katasandi')
+      'id_pengguna'=>$this->input->get('id_pengguna'),
+      'katasandi'=>$this->input->get('katasandi')
     );
     $data1=$this->PelangganModel->getDataPelanggan($DataLogin);
     $data2=$this->KateringModel->getDataKatering($DataLogin);
@@ -41,7 +41,7 @@ class LoginController extends CI_Controller {
     else {
       $response=array(
         'status'=>false,
-        'message'=>'pengguna belum terdaftar'
+        'message'=>'id pengguna/katasandi salah'
       );
     }
 

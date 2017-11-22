@@ -14,20 +14,16 @@ class RegisterController extends CI_Controller {
 
   public function RegisterPelanggan()
   {
-    $DataPelanggan=array(
-      'id_pengguna'=>$this->input->post('id_pengguna'),
-      'katasandi'=>$this->input->post('katasandi'),
-      'no_telp'=>$this->input->post('no_telp'),
-      'nama_lengkap'=>$this->input->post('nama_lengkap'),
-      'alamat'=>$this->input->post('alamat')
-    );
+    $DataPelanggan = json_decode(file_get_contents('php://input'),true);
     if($this->PelangganModel->cekUsername($DataPelanggan['id_pengguna']))
     {
       $this->PelangganModel->insertPelanggan($DataPelanggan);
+      $Pelanggan=$this->PelangganModel->getDataPelanggan($DataPelanggan);
 
       $response=array(
         'status'=>true,
-        'message'=>'registrasi berhasil'
+        'message'=>'registrasi berhasil',
+        'datapelanggan'=>$Pelanggan
       );
     }
     else {
@@ -47,34 +43,30 @@ class RegisterController extends CI_Controller {
 
   public function RegisterKatering()
   {
-    $DataKatering=array(
-      'id_pengguna'=>$this->input->post('id_pengguna'),
-      'katasandi'=>$this->input->post('katasandi'),
-      'nama_katering'=>$this->input->post('nama_katering'),
-      'no_telp'=>$this->input->post('no_telp'),
-      'alamat'=>$this->input->post('alamat'),
-      'no_verifikasi'=>$this->input->post('no_verifikasi')
-    );
+    $DataKatering = json_decode(file_get_contents('php://input'),true);
     if($this->KateringModel->cekUsername($DataKatering['id_pengguna']))
     {
       if($this->KateringModel->cekNoVerifikasi($DataKatering['no_verifikasi']))
       {
-        $this->KateringModel->updateKatering($DataKatering);
+        $this->KateringModel->updateKateringByNoVerifikasi($DataKatering);
+        $Katering=$this->KateringModel->getDataKatering($DataKatering);
 
         $response=array(
-          'status'=>'sukses'
+          'status'=>true,
+          'message'=>'registrasi berhasil',
+          'datakatering'=>$Katering
         );
       }
       else {
         $response=array(
-          'status'=>'gagal',
+          'status'=>false,
           'message'=>'no verifikasi salah'
         );
       }
     }
     else {
       $response=array(
-        'status'=>'gagal',
+        'status'=>false,
         'message'=>'id pengguna sudah terdaftar'
       );
     }

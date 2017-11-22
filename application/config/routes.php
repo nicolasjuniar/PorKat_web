@@ -53,11 +53,21 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['pengguna/login']['POST']='LoginController/Login';
+////pengguna
+$route['pengguna/login']['GET']='LoginController/Login';
 
+///pelanggan
 $route['pelanggan/register']['POST']='RegisterController/RegisterPelanggan';
+$route['pelanggan/update/password']['PUT']='SettingController/UbahKatasandiPelanggan';
+$route['pelanggan/update/profile']['PUT']='SettingController/UbahProfilPelanggan';
+$route['pelanggan/ulasan/list']['GET']='KelolaUlasanController/GetUlasan';
+$route['pelanggan/ulasan/update']['PUT']='KelolaUlasanController/UpdateUlasan';
+$route['pelanggan/ulasan/insert']['POST']='KelolaUlasanController/Ulas';
+$route['pelanggan/ulasan/cek']['GET']='KelolaUlasanController/IsUlas';
+$route['pelanggan/ulasan/delete/(:num)']['DELETE']='KelolaUlasanController/DeleteUlasan/$1';
 
+///katering
 $route['katering/register']['POST']='RegisterController/RegisterKatering';
 $route['katering/list/rating']['GET']='GetListKateringController/GetListKateringByRating';
-
+$route['katering/update/password']['PUT']='SettingController/UbahKatasandiKatering';
 $route['menu/list']['GET']='GetListKateringController/getListMenu';
