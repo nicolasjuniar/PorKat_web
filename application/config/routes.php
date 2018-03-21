@@ -49,12 +49,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'LoginWebController';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+//////////////////////////////////////////////////////MOBILE/////////////////////////////////////////////////
 ////pengguna
-$route['pengguna/login']['GET']='LoginController/Login';
+$route['pengguna/login']['POST']='LoginMobileController/Login_mobile';
 
 ///pelanggan
 $route['pelanggan/register']['POST']='RegisterController/RegisterPelanggan';
@@ -65,9 +66,23 @@ $route['pelanggan/ulasan/update']['PUT']='KelolaUlasanController/UpdateUlasan';
 $route['pelanggan/ulasan/insert']['POST']='KelolaUlasanController/Ulas';
 $route['pelanggan/ulasan/cek']['GET']='KelolaUlasanController/IsUlas';
 $route['pelanggan/ulasan/delete/(:num)']['DELETE']='KelolaUlasanController/DeleteUlasan/$1';
+$route['pelanggan/pesan/insert']['POST']='TransaksiController/InsertPesan';
+$route['pelanggan/pesan/update']['POST']='TransaksiController/UpdatePesan';
+$route['pelanggan/pesan/list']['GET']='TransaksiController/GetListPesanPelanggan';
 
 ///katering
 $route['katering/register']['POST']='RegisterController/RegisterKatering';
 $route['katering/list/rating']['GET']='GetListKateringController/GetListKateringByRating';
+$route['katering/list/distance']['GET']='GetListKateringController/GetListKateringByDistance';
 $route['katering/update/password']['PUT']='SettingController/UbahKatasandiKatering';
+$route['katering/update/profile']['PUT']='SettingController/UbahProfilKatering';
 $route['menu/list']['GET']='GetListKateringController/getListMenu';
+$route['transaksi/pengantaran/list']='TransaksiController/GetListPengantaran';
+$route['transaksi/makanan/list']='TransaksiController/GetListMakanan';
+$route['menu/get']['GET']='KelolaMenuController/GetListMenu';
+$route['menu/insert']['POST']='KelolaMenuController/InsertMenu';
+$route['menu/update']['PUT']='KelolaMenuController/UpdateMenu';
+
+///////////////////////////////////////////////////WEB///////////////////////////////////////////////////////////
+
+$route['admin/login']['POST']='LoginWebController/Login_web';

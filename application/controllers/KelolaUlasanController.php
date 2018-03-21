@@ -97,6 +97,7 @@ class KelolaUlasanController extends CI_Controller {
 
     $this->UlasanModel->updateUlasan($Ulasan);
     $response=array(
+      'id_ulasan'=>$Ulasan['id_ulasan'],
       'ulasan'=>$Ulasan['ulasan'],
       'rating'=>$Ulasan['rating'],
       'message'=>'Ulasan berhasil diubah'

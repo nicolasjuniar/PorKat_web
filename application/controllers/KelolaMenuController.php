@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class GetListKateringController extends CI_Controller {
+class KelolaMenuController extends CI_Controller {
 
   public function __construct()
   {
@@ -11,39 +11,6 @@ class GetListKateringController extends CI_Controller {
       'MenuModel'=>'MenuModel'
     );
     $this->load->model($models);
-  }
-
-  public function GetListKateringByRating()
-  {
-    $response=array(
-      'listkatering'=>$this->KateringModel->getAllKateringByRating()
-    );
-
-    $this->output
-          ->set_status_header(200)
-          ->set_content_type('application/json', 'utf-8')
-          ->set_output(json_encode($response, JSON_PRETTY_PRINT))
-          ->_display();
-      exit;
-  }
-
-  public function GetListKateringByDistance()
-  {
-    $location=array(
-      'longitude'=>$this->input->get('longitude'),
-      'latitude'=>$this->input->get('latitude')
-    );
-    
-    $response=array(
-      'listkatering'=>$this->KateringModel->getAllKateringByDistance($location)
-    );
-
-    $this->output
-          ->set_status_header(200)
-          ->set_content_type('application/json', 'utf-8')
-          ->set_output(json_encode($response, JSON_PRETTY_PRINT))
-          ->_display();
-      exit;
   }
 
   public function GetListMenu()
@@ -60,6 +27,39 @@ class GetListKateringController extends CI_Controller {
           ->set_output(json_encode($response, JSON_PRETTY_PRINT))
           ->_display();
       exit;
+  }
 
+  public function InsertMenu()
+  {
+    $Menu = json_decode(file_get_contents('php://input'),true);
+    $this->MenuModel->insertMenu($Menu);
+
+    $response=array(
+      'message'=>'berhasil memasukkan menu'
+    );
+
+    $this->output
+          ->set_status_header(200)
+          ->set_content_type('application/json', 'utf-8')
+          ->set_output(json_encode($response, JSON_PRETTY_PRINT))
+          ->_display();
+      exit;
+  }
+
+  public function UpdateMenu()
+  {
+    $Menu = json_decode(file_get_contents('php://input'),true);
+    $this->MenuModel->updateMenu($Menu);
+
+    $response=array(
+      'message'=>'berhasil'
+    );
+
+    $this->output
+          ->set_status_header(200)
+          ->set_content_type('application/json', 'utf-8')
+          ->set_output(json_encode($response, JSON_PRETTY_PRINT))
+          ->_display();
+      exit;
   }
 }

@@ -65,4 +65,22 @@ class SettingController extends CI_Controller {
       ->_display();
     exit;
   }
+
+  public function UbahProfilKatering()
+  {
+    $DataKatering = json_decode(file_get_contents('php://input'),true);
+
+    $this->KateringModel->updateKatering($DataKatering);
+
+    $response=array(
+      'message'=>'ubah profil berhasil'
+    );
+
+    $this->output
+      ->set_status_header(200)
+      ->set_content_type('application/json', 'utf-8')
+      ->set_output(json_encode($response, JSON_PRETTY_PRINT))
+      ->_display();
+    exit;
+  }
 }

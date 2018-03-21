@@ -57,10 +57,10 @@ class UlasanModel extends CI_Model {
   {
     $this->load->model('KateringModel');
     $id_katering=$this->getIdKatering($id_ulasan);
+    $this->KateringModel->updateRating($id_katering);
+
     $this->db->where('id_ulasan',$id_ulasan);
     $this->db->delete('tbl_ulasan');
-
-    $this->KateringModel->updateRating($id_katering);
   }
 
   public function isUlas($id_pelanggan,$id_katering)

@@ -21,14 +21,14 @@ class RegisterController extends CI_Controller {
       $Pelanggan=$this->PelangganModel->getDataPelanggan($DataPelanggan);
 
       $response=array(
-        'status'=>true,
+        'success'=>true,
         'message'=>'registrasi berhasil',
         'datapelanggan'=>$Pelanggan
       );
     }
     else {
       $response=array(
-        'status'=>false,
+        'success'=>false,
         'message'=>'id pengguna sudah terdaftar'
       );
     }
@@ -52,21 +52,21 @@ class RegisterController extends CI_Controller {
         $Katering=$this->KateringModel->getDataKatering($DataKatering);
 
         $response=array(
-          'status'=>true,
+          'success'=>true,
           'message'=>'registrasi berhasil',
           'datakatering'=>$Katering
         );
       }
       else {
         $response=array(
-          'status'=>false,
+          'success'=>false,
           'message'=>'no verifikasi salah'
         );
       }
     }
     else {
       $response=array(
-        'status'=>false,
+        'success'=>false,
         'message'=>'id pengguna sudah terdaftar'
       );
     }

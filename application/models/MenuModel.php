@@ -10,4 +10,15 @@ class MenuModel extends CI_Model {
     $listmenu=$this->db->get('')->result_array();
     return $listmenu;
   }
+
+  public function insertMenu($Menu)
+  {
+    $this->db->insert('tbl_menu',$Menu);
+  }
+
+  public function updateMenu($Menu)
+  {
+    $this->db->where('id_menu',$Menu['id_menu']);
+    $this->db->update('tbl_menu',$Menu);
+  }
 }
