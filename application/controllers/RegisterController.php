@@ -34,16 +34,18 @@ class RegisterController extends CI_Controller {
     }
 
     $this->output
-      ->set_status_header(200)
-      ->set_content_type('application/json', 'utf-8')
-      ->set_output(json_encode($response, JSON_PRETTY_PRINT))
-      ->_display();
+    ->set_status_header(200)
+    ->set_content_type('application/json', 'utf-8')
+    ->set_output(json_encode($response, JSON_PRETTY_PRINT))
+    ->_display();
     exit;
   }
 
   public function RegisterKatering()
   {
     $DataKatering = json_decode(file_get_contents('php://input'),true);
+    $encodedImage=$DataKatering['encoded_image'];
+    unset($DataKatering['encoded_image']);
     if($this->KateringModel->cekUsername($DataKatering['id_pengguna']))
     {
       if($this->KateringModel->cekNoVerifikasi($DataKatering['no_verifikasi']))
@@ -71,11 +73,15 @@ class RegisterController extends CI_Controller {
       );
     }
 
+    $fotoKatering=base64_decode($encodedImage);
+    $fp = fopen($_SERVER['DOCUMENT_ROOT'].'/porkat_web/foto/katering/'.$DataKatering['foto'].'', 'w');
+    fwrite($fp, $fotoKatering);
+
     $this->output
-      ->set_status_header(200)
-      ->set_content_type('application/json', 'utf-8')
-      ->set_output(json_encode($response, JSON_PRETTY_PRINT))
-      ->_display();
+    ->set_status_header(200)
+    ->set_content_type('application/json', 'utf-8')
+    ->set_output(json_encode($response, JSON_PRETTY_PRINT))
+    ->_display();
     exit;
   }
 }

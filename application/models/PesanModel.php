@@ -21,8 +21,30 @@ class PesanModel extends CI_Model {
     $this->db->from('tbl_pesan p');
     $this->db->join('tbl_katering k','p.id_katering=k.id_katering');
     $this->db->where('p.id_pelanggan',$id_pelanggan);
+    $this->db->order_by('p.id_pesan','DESC');
     $ListPesan=$this->db->get('')->result_array();
     return $ListPesan;
+  }
+
+
+  public function getListMenuPesanan($id_pesan)
+  {
+    $this->db->select('count(id_pesan) as jumlah_pesan');
+    $this->db->from('tbl_detailpesan');
+    $this->db->where('id_pesan',$id_pesan);
+    $jumlah=$this->db->get()->row()->jumlah_pesan;
+    if($jumlah%7==0){
+      $this->db->limit($jumlah/7);
+    }else{
+      $this->db->limit($jumlah/30);
+    }
+    $this->db->select('dtl_psn.id_menu,dtl_psn.waktu_pengantaran,m.nama_menu,m.harga');
+    $this->db->from('tbl_detailpesan dtl_psn');
+    $this->db->join('tbl_menu m','dtl_psn.id_menu=m.id_menu');
+    $this->db->where('dtl_psn.id_pesan',$id_pesan);
+    $this->db->order_by('dtl_psn.waktu_pengantaran','ASC');
+    $ListMenu=$this->db->get('')->result_array();
+    return $ListMenu;
   }
 
   public function getPesanToday($id_katering)

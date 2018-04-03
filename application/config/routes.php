@@ -69,6 +69,7 @@ $route['pelanggan/ulasan/delete/(:num)']['DELETE']='KelolaUlasanController/Delet
 $route['pelanggan/pesan/insert']['POST']='TransaksiController/InsertPesan';
 $route['pelanggan/pesan/update']['POST']='TransaksiController/UpdatePesan';
 $route['pelanggan/pesan/list']['GET']='TransaksiController/GetListPesanPelanggan';
+$route['pelanggan/pesan/menu']['GET']='TransaksiController/getListMenuPesanan';
 
 ///katering
 $route['katering/register']['POST']='RegisterController/RegisterKatering';

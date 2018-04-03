@@ -113,4 +113,19 @@ class TransaksiController extends CI_Controller {
     ->_display();
     exit;
   }
+
+  public function getListMenuPesanan()
+  {
+    $id_pesan=$this->input->get('id_pesan');
+    $response=array(
+      'list_menu'=>$this->PesanModel->getListMenuPesanan($id_pesan)
+    );
+
+    $this->output
+    ->set_status_header(200)
+    ->set_content_type('application/json', 'utf-8')
+    ->set_output(json_encode($response, JSON_PRETTY_PRINT))
+    ->_display();
+    exit;
+  }
 }
