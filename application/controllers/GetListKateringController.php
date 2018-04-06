@@ -33,7 +33,7 @@ class GetListKateringController extends CI_Controller {
       'longitude'=>$this->input->get('longitude'),
       'latitude'=>$this->input->get('latitude')
     );
-    
+
     $response=array(
       'listkatering'=>$this->KateringModel->getAllKateringByDistance($location)
     );

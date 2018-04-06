@@ -7,6 +7,7 @@ class MenuModel extends CI_Model {
     $this->db->select('*');
     $this->db->from('tbl_menu');
     $this->db->where('id_katering',$id_katering);
+    $this->db->where('status',1);
     $listmenu=$this->db->get('')->result_array();
     return $listmenu;
   }

@@ -83,6 +83,7 @@ $route['transaksi/makanan/list']='TransaksiController/GetListMakanan';
 $route['menu/get']['GET']='KelolaMenuController/GetListMenu';
 $route['menu/insert']['POST']='KelolaMenuController/InsertMenu';
 $route['menu/update']['PUT']='KelolaMenuController/UpdateMenu';
+$route['menu/delete']['PUT']='KelolaMenuController/UpdateStatusMenu';
 
 ///////////////////////////////////////////////////WEB///////////////////////////////////////////////////////////
 
