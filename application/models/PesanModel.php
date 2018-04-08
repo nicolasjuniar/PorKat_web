@@ -15,12 +15,23 @@ class PesanModel extends CI_Model {
     $this->db->update('tbl_pesan',$Pesan);
   }
 
-  public function getAllPesan($id_pelanggan)
+  public function getAllPesanPelanggan($id_pelanggan)
   {
     $this->db->select('p.id_pesan,k.nama_katering,p.tgl_mulai,p.tgl_selesai,p.alamat,p.catatan,p.nota,p.total,p.status');
     $this->db->from('tbl_pesan p');
     $this->db->join('tbl_katering k','p.id_katering=k.id_katering');
     $this->db->where('p.id_pelanggan',$id_pelanggan);
+    $this->db->order_by('p.id_pesan','DESC');
+    $ListPesan=$this->db->get('')->result_array();
+    return $ListPesan;
+  }
+
+  public function getAllPesanKatering($id_katering)
+  {
+    $this->db->select('p.id_pesan,plg.nama_lengkap,p.tgl_mulai,p.tgl_selesai,p.alamat,p.catatan,p.nota,p.total,p.status');
+    $this->db->from('tbl_pesan p');
+    $this->db->join('tbl_pelanggan plg','p.id_pelanggan=plg.id_pelanggan');
+    $this->db->where('p.id_katering',$id_katering);
     $this->db->order_by('p.id_pesan','DESC');
     $ListPesan=$this->db->get('')->result_array();
     return $ListPesan;
@@ -38,7 +49,7 @@ class PesanModel extends CI_Model {
     }else{
       $this->db->limit($jumlah/30);
     }
-    $this->db->select('dtl_psn.id_menu,dtl_psn.waktu_pengantaran,m.nama_menu,m.harga');
+    $this->db->select('dtl_psn.id_menu,dtl_psn.waktu_pengantaran,m.nama_menu,m.harga,m.foto');
     $this->db->from('tbl_detailpesan dtl_psn');
     $this->db->join('tbl_menu m','dtl_psn.id_menu=m.id_menu');
     $this->db->where('dtl_psn.id_pesan',$id_pesan);

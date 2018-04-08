@@ -78,12 +78,14 @@ $route['katering/list/distance']['GET']='GetListKateringController/GetListKateri
 $route['katering/update/password']['PUT']='SettingController/UbahKatasandiKatering';
 $route['katering/update/profile']['PUT']='SettingController/UbahProfilKatering';
 $route['menu/list']['GET']='GetListKateringController/getListMenu';
-$route['transaksi/pengantaran/list']='TransaksiController/GetListPengantaran';
-$route['transaksi/makanan/list']='TransaksiController/GetListMakanan';
+$route['transaksi/pengantaran/list']['GET']='TransaksiController/GetListPengantaran';
+$route['transaksi/makanan/list']['GET']='TransaksiController/GetListMakanan';
 $route['menu/get']['GET']='KelolaMenuController/GetListMenu';
 $route['menu/insert']['POST']='KelolaMenuController/InsertMenu';
 $route['menu/update']['PUT']='KelolaMenuController/UpdateMenu';
 $route['menu/delete']['PUT']='KelolaMenuController/UpdateStatusMenu';
+$route['katering/update/photo']['PUT']='KateringController/updatePhotoKatering';
+$route['katering/pesan/list']['GET']='TransaksiController/GetListPesanKatering';
 
 ///////////////////////////////////////////////////WEB///////////////////////////////////////////////////////////
 

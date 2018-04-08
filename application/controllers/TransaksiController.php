@@ -39,10 +39,27 @@ class TransaksiController extends CI_Controller {
   public function GetListPesanPelanggan()
   {
     $id_pelanggan=$this->input->get('id_pelanggan');
-    $ListPesan=$this->PesanModel->getAllPesan($id_pelanggan);
+    $ListPesan=$this->PesanModel->getAllPesanPelanggan($id_pelanggan);
 
     $response=array(
       'listtransaksi'=>$ListPesan
+    );
+
+    $this->output
+    ->set_status_header(200)
+    ->set_content_type('application/json', 'utf-8')
+    ->set_output(json_encode($response, JSON_PRETTY_PRINT))
+    ->_display();
+    exit;
+  }
+
+  public function GetListPesanKatering()
+  {
+    $id_katering=$this->input->get('id_katering');
+    $ListPesan=$this->PesanModel->getAllPesanKatering($id_katering);
+
+    $response=array(
+      'list_transaksi'=>$ListPesan
     );
 
     $this->output
@@ -73,7 +90,6 @@ class TransaksiController extends CI_Controller {
   public function GetListMakanan()
   {
     $id_katering=$this->input->get('id_katering');
-    $tanggal=$this->input->get('tanggal');
     $ListMenu=$this->PesanModel->getListMakananToday($id_katering);
 
     $response=array(
@@ -93,12 +109,13 @@ class TransaksiController extends CI_Controller {
     $DataPesan=array(
       'id_pesan'=>$this->input->post('id_pesan'),
       'status'=>'konfirmasi nota',
-      'nota'=>$this->input->post('nota'),
+      'nota'=>$this->input->post('nota')
     );
 
     $this->PesanModel->updatePesan($DataPesan);
 
-    $foto_nota=base64_decode($this->input->post('foto_nota'));
+    $encodedImage=$this->input->post('encoded_image');
+    $foto_nota=base64_decode($encodedImage);
     $fp = fopen($_SERVER['DOCUMENT_ROOT'].'/porkat_web/foto/nota/'.$DataPesan['nota'].'', 'w');
     fwrite($fp, $foto_nota);
 
