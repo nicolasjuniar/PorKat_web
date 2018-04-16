@@ -76,7 +76,7 @@ class TransaksiController extends CI_Controller {
     $ListPesan=$this->PesanModel->getPesanToday($id_katering);
 
     $response=array(
-      'listtransaksi'=>$ListPesan
+      'list_transaksi'=>$ListPesan
     );
 
     $this->output

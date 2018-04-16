@@ -18,6 +18,14 @@ class KateringModel extends CI_Model {
     return $DataKatering;
   }
 
+  public function getKateringById($id_katering){
+    $this->db->select('*');
+    $this->db->from('tbl_katering');
+    $this->db->where('id_katering',$id_katering);
+    $katering=$this->db->get('')->row_array();
+    return $katering;
+  }
+
   public function cekUsername($id_pengguna)
   {
     $this->db->select('*');
@@ -104,5 +112,23 @@ class KateringModel extends CI_Model {
     $this->db->group_by('k.id_katering');
     $DataKatering=$this->db->get('')->result_array();
     return $DataKatering;
+  }
+
+  public function getCountKatering()
+  {
+    $this->db->select('*');
+    $this->db->from('tbl_katering');
+    $this->db->where('status','1');
+    $countKatering=$this->db->count_all_results('');
+    return $countKatering;
+  }
+
+  public function getListKatering($number,$offset)
+  {
+    $this->db->select('*');
+    $this->db->from('tbl_katering');
+    $this->db->where('status','1');
+    $query=$this->db->get('',$number.$offset);
+    return $query->result();
   }
 }

@@ -32,6 +32,8 @@ class PesanModel extends CI_Model {
     $this->db->from('tbl_pesan p');
     $this->db->join('tbl_pelanggan plg','p.id_pelanggan=plg.id_pelanggan');
     $this->db->where('p.id_katering',$id_katering);
+    $this->db->where('p.status','sedang berlangsung');
+    $this->db->or_where('p.status','selesai');
     $this->db->order_by('p.id_pesan','DESC');
     $ListPesan=$this->db->get('')->result_array();
     return $ListPesan;

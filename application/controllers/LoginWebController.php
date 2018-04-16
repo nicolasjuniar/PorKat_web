@@ -47,7 +47,7 @@ class LoginWebController extends CI_Controller {
       array(
         'field'=>'katasandi',
         'label'=>'katasandi',
-        'rules'=>'callback_getDataAdmin',
+        'rules'=>'callback_CekLogin',
         'errors'=>array(
           'CekLogin'=>'id pengguna atau kata sandi salah'
         )
@@ -60,7 +60,7 @@ class LoginWebController extends CI_Controller {
       $this->form_validation->set_rules($CekLogin);
       if($this->form_validation->run())
       {
-        $datasession = $this->LoginModel->getDataAdmin($DataLogin);
+        $datasession = $this->AdminModel->getDataAdmin($DataLogin);
 
         $this->session->set_userdata($datasession);
         $this->session->set_userdata('status','login');
@@ -75,4 +75,17 @@ class LoginWebController extends CI_Controller {
       echo validation_errors();
     }
   }
+
+  public function CekLogin()
+  {
+    $DataLogin=array(
+      'id_pengguna'=>$this->input->post('id_pengguna'),
+      'katasandi'=>$this->input->post('katasandi')
+    );
+    if($this->AdminModel->cekLogin($DataLogin))
+    return true;
+    else
+    return false;
+  }
+
 }

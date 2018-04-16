@@ -20,11 +20,11 @@ class AdminModel extends CI_Model {
   }
 
 
-  public  function getDataAdmin($DataLogin)
+  public function getDataAdmin($DataLogin)
   {
     $this->db->select('*');
     $this->db->from('tbl_admin');
-    $this->db->where('email',$DataLogin["email"]);
+    $this->db->where('id_pengguna',$DataLogin["id_pengguna"]);
     $this->db->where('katasandi',$DataLogin["katasandi"]);
     $DataAdmin=$this->db->get('')->row_array();
     return $DataAdmin;

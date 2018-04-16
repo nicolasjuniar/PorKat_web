@@ -88,5 +88,12 @@ $route['katering/update/photo']['PUT']='KateringController/updatePhotoKatering';
 $route['katering/pesan/list']['GET']='TransaksiController/GetListPesanKatering';
 
 ///////////////////////////////////////////////////WEB///////////////////////////////////////////////////////////
-
+$route['login']='LoginWebController';
 $route['admin/login']['POST']='LoginWebController/Login_web';
+$route['dashboard']='DashboardWebController';
+$route['logout']='DashboardWebController/logoutWeb';
+$route['katering']='KateringWebController/setKateringView';
+$route['katering/(:any)']='KateringWebController/setKateringView/$1';
+$route['katering/delete/(:num)']['GET']='KateringWebController/deleteKatering/$1';
+$route['katering/detail/(:num)']='KateringWebController/getDetailKatering/$1';
+$route['katering/edit/(:num)']='KateringWebController/setEditKatering/$1';

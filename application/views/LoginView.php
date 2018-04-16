@@ -2,6 +2,9 @@
 <html >
 <head>
   <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url();?>assets_main/img/logo.png" />
+  <link rel="icon" type="image/png" href="<?php echo base_url();?>assets_main/img/logo.png" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>Halaman Masuk</title>
 
   <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
@@ -35,38 +38,21 @@
     $("#formLogin").submit(function(e)
     {
       e.preventDefault();
-
       $.ajax({
         type: "POST",
         url:"<?php echo base_url(); ?>admin/login",
         data: $(this).serialize()
       }).done(function(responseLogin){
-			if(responseLogin!='')
-			{
-				alert("sadsadsa");
-			}
-			else
-			{
-				window.location.href = "<?php echo base_url(); ?>";
-			}
-		});
-      // $.ajax({
-      //   url:"<?php echo base_url(); ?>admin/login",
-      //   type:"POST",
-      //   data:$(this).serialize()
-      // }).done(function(responseLogin){
-      //   if(responseLogin!='')
-      //   {
-      //     alert('gagal');
-      //     document.getElementById("error_message").innerHTML=responseLogin;
-      //     $('.alert').fadeIn(500);
-      //   }
-      //   else
-      //   {
-      //     alert('sukses');
-      //     window.location.href = "<?php echo base_url(); ?>/sukses";
-      //   }
-      // });
+        if(responseLogin!='')
+        {
+          document.getElementById("error_message").innerHTML=responseLogin;
+          $('.alert').fadeIn(500);
+        }
+        else
+        {
+          window.location.href = "<?php echo base_url(); ?>dashboard";
+        }
+      });
     });
   });
   </script>
