@@ -57,7 +57,7 @@
           </a>
         </li>
         <li>
-          <a href="<?php echo base_url('index.php/panti_belum_terverifikasi');?>">
+					<a href="<?php echo base_url();?>pelanggan">
             <i class="material-icons">person</i>
             <p>Pelanggan</p>
           </a>
@@ -82,7 +82,9 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a href="<?php echo base_url('index.php/tambah_panti');?>" type="button" class="btn btn-primary btn-round">Tambah Katering</a>
+          <button type="button" class="btn btn-primary btn-round" data-toggle="modal" data-target="#addKateringModal">
+            Tambah Katering
+          </button>
         </div>
         <div class="collapse navbar-collapse">
 
@@ -193,6 +195,27 @@
 </div>
 <!--  End Modal -->
 
+<!-- Sart Modal -->
+<div class="modal fade" id="addKateringModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Tambahkan Katering</h4>
+      </div>
+      <div class="modal-body">
+        <form id="formAddKatering" action="<?php echo base_url();?>katering/add/no_verifikasi" method="post" enctype="multipart/form-data">
+          <input type="text" class="form-control" name="no_verifikasi" id="no_verifikasi" placeholder="Nomor Verifikasi"/>
+          <input  type="submit" class="btn btn-primary btn-round pull-right" value="Tambah Katering"/>
+        </form>
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>
+<!--  End Modal -->
+
 </div>
 
 <script type="text/javascript">
@@ -213,6 +236,12 @@ function deleteKatering()
     window.location.href = "<?php echo site_url(); ?>katering";
   });
 }
+
+$(document).ready(function(){
+  $("#buttonShowModal").click(function(){
+      $("#addKateringModal").modal();
+   });
+});
 </script>
 
 </body>

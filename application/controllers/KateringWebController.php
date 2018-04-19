@@ -59,4 +59,31 @@ class KateringWebController extends CI_Controller {
     $katering=$this->KateringModel->getKateringById($id_katering);
     $this->load->view('EditKateringView',$katering);
   }
+
+  public function updateKateringWeb()
+  {
+    $DataKatering=array(
+      'id_katering'=>$this->input->post('id_katering'),
+      'nama_katering'=>$this->input->post('nama_katering'),
+      'no_telp'=>$this->input->post('no_telp'),
+      'alamat'=>$this->input->post('alamat'),
+      'foto'=>$this->input->post('foto'),
+      'longitude'=>$this->input->post('longitude'),
+      'latitude'=>$this->input->post('latitude')
+    );
+
+    $this->KateringModel->updateKatering($DataKatering);
+
+    redirect(base_url('katering'));
+  }
+
+  public function addkatering()
+  {
+    $DataKatering=array(
+      'no_verifikasi'=>$this->input->post('no_verifikasi')
+    );
+
+    $this->KateringModel->insertKatering($DataKatering);
+    redirect(base_url('katering'));
+  }
 }

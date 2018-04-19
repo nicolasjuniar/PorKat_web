@@ -43,4 +43,22 @@ class PelangganModel extends CI_Model {
     $this->db->where('id_pelanggan',$DataPelanggan['id_pelanggan']);
     $this->db->update('tbl_pelanggan',$DataPelanggan);
   }
+
+  public function getCountPelanggan()
+  {
+    $this->db->select('*');
+    $this->db->from('tbl_pelanggan');
+    $this->db->where('status','1');
+    $countKatering=$this->db->count_all_results('');
+    return $countKatering;
+  }
+
+  public function getListPelanggan($number,$offset)
+  {
+    $this->db->select('*');
+    $this->db->from('tbl_pelanggan');
+    $this->db->where('status','1');
+    $query=$this->db->get('',$number.$offset);
+    return $query->result();
+  }
 }

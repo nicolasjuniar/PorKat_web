@@ -6,11 +6,10 @@
   <link rel="icon" type="image/png" href="<?php echo base_url();?>assets_main/img/logo.png" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-  <title>Detail Katering</title>
+  <title>Pelanggan</title>
 
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
   <meta name="viewport" content="width=device-width" />
-
 
   <!-- Bootstrap core CSS     -->
   <link href="<?php echo base_url();?>assets_main/css/bootstrap.min.css" rel="stylesheet" />
@@ -29,11 +28,12 @@
 <body>
 
   <div class="wrapper">
+
     <div class="sidebar" data-color="purple" data-image="<?php echo base_url();?>assets_main/img/sidebar-1.jpg">
       <!--
       Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
-      Tip 2: you can also add an image using data-image tag
 
+      Tip 2: you can also add an image using data-image tag
     -->
 
     <div class="logo">
@@ -50,13 +50,13 @@
             <p>Dashboard</p>
           </a>
         </li>
-        <li  class="active">
+        <li>
           <a href="<?php echo base_url();?>katering">
             <i class="material-icons">local_dining</i>
             <p>Katering</p>
           </a>
         </li>
-        <li>
+        <li  class="active">
 					<a href="<?php echo base_url();?>pelanggan">
             <i class="material-icons">person</i>
             <p>Pelanggan</p>
@@ -82,12 +82,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" >Detail Katering</a>
         </div>
         <div class="collapse navbar-collapse">
-          <form class="navbar-form navbar-right" role="search">
+
+
+          <form class="navbar-form navbar-right" role="search" action="<?php echo site_url('search_panti_s');?>" method="post">
             <div class="form-group  is-empty">
-              <input type="text" class="form-control" placeholder="Search">
+              <input type="text" class="form-control" placeholder="Search" name="cari">
               <span class="material-input"></span>
             </div>
             <button type="submit" class="btn btn-white btn-round btn-just-icon">
@@ -101,90 +102,58 @@
     <div class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-12">
             <div class="card">
               <div class="card-header" data-background-color="purple">
-                <h4 class="title"><?php echo $nama_katering?></h4>
-                <p class="category">Detail Katering</p>
+                <h4 class="title">Pelanggan</h4>
+                <p class="category">Data Semua Pelanggan</p>
               </div>
-              <div class="card-content">
-                <form>
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="form-group label-floating">
-                        <label class="control-label">Id Penguna</label>
-                        <input type="text" value="<?php echo $id_pengguna; ?>"  class="form-control" disabled>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-group label-floating">
-                        <label class="control-label">No Telepon</label>
-                        <input type="text" value="<?php echo $no_telp; ?>" class="form-control" disabled>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-group label-floating">
-                        <label class="control-label">Alamat</label>
-                        <input type="text" value="<?php echo $alamat; ?>" class="form-control" disabled>
-                      </div>
-                    </div>
-                  </div>
+              <div class="card-content table-responsive">
+                <table class="table">
+                  <thead class="text-primary">
+                    <th>Id Pelanggan</th>
+                    <th>Nama Pelanggan</th>
+                    <th>Alamat Pelanggan</th>
+                    <th>Action</th>
+                  </thead>
+                  <?php
+                  $start = 0;
+                  foreach ($list_pelanggan as $pelanggan)
+                  {
+                    ?>
+                    <tbody>
+                      <tr>
+                        <td><?php echo $pelanggan->id_pelanggan ?></td>
+                        <td><?php echo $pelanggan->nama_lengkap ?></td>
+                        <td><?php echo $pelanggan->alamat ?></td>
+                        <td class="td-actions text-right">
+                          <?php
+                          echo anchor(base_url().'katering/detail/'.$pelanggan->id_pelanggan,'<button type="button" rel="tooltip" title="Read More" class="btn btn-info btn-simple btn-xs">
+                          <i class="material-icons">visibility</i>
+                          </button>');
+                          echo anchor(base_url().'katering/edit/'.$pelanggan->id_pelanggan,'<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
+                          <i class="material-icons">edit</i>
+                          </button>');
+                          ?>
+                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs" data-toggle="modal" data-target="#myModal" onclick="getIdPelanggan(<?php echo $pelanggan->id_pelanggan ?>)">
+                            <i class="material-icons">close</i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                    <?php
+                  }
+                  ?>
+                </table>
 
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group label-floating">
-                        <label class="control-label">rating</label>
-                        <input type="text" value="<?php echo $rating; ?>" class="form-control" disabled>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group label-floating">
-                        <label class="control-label">Nomor Verifikasi</label>
-                        <input type="text" value="<?php echo $no_verifikasi; ?>" class="form-control" disabled>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group label-floating">
-                        <label class="control-label">Longtitude</label>
-                        <input type="text" class="form-control" value="<?php echo $longitude; ?>" disabled>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group label-floating">
-                        <label class="control-label">Latitude</label>
-                        <input type="text" class="form-control" value="<?php echo $latitude; ?>" disabled>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="clearfix"></div>
-                </form>
               </div>
             </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card card-profile">
-              <div class="card-avatar">
-                <a>
-                  <img  src="<?php echo base_url('foto/katering/'.$foto);?>" width="300px"; height="auto";/>
-                </a>
-              </div>
-
-              <div class="content">
-                <h6 class="category text-gray">Katering</h6>
-                <h4 class="card-title"><?php echo $nama_katering; ?></h4>
-                <h4 class="card-title"><?php echo $id_katering; ?></h4>
+            <div class="text-center">
+              <ul class="pagination pagination-info">
                 <?php
-                echo anchor(base_url('katering/edit/'.$id_katering),'<button href="#pablo" class="btn btn-primary btn-round">Edit Data</button>');
+                echo '<li><a href="javascript:void(0);">' . $this->pagination->create_links() .'</a></li>';
                 ?>
-                <button class="btn btn-danger btn-round" data-toggle="modal" data-target="#myModal" onclick="getIdKatering(<?php echo $id_katering?>)">Hapus</button>
-              </div>
+              </ul>
             </div>
           </div>
         </div>
@@ -211,11 +180,11 @@
         <h4 class="modal-title">Peringatan</h4>
       </div>
       <div class="modal-body">
-        <p> Apakah anda yakin menghapus katering ini?
+        <p> Apakah anda yakin menghapus pelanggan ini?
         </p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default btn-simple" onclick="deleteKatering()">Ya</button>
+        <button type="button" class="btn btn-default btn-simple" onclick="deletePelanggan()">Ya</button>
         <button type="button" class="btn btn-danger btn-simple" data-dismiss="modal">Tidak</button>
       </div>
     </div>
@@ -223,25 +192,29 @@
 </div>
 <!--  End Modal -->
 
-<script type="text/javascript">
-var idKatering;
+</div>
 
-function getIdKatering(id)
+<script type="text/javascript">
+
+var idPelanggan;
+
+function getIdPelanggan(id)
 {
-  idKatering=id;
+  idPelanggan=id;
 }
 
-function deleteKatering()
+function deletePelanggan()
 {
   $.ajax({
     type: "GET",
-    url: "<?php echo base_url(); ?>katering/delete/"+idKatering
+    url: "<?php echo base_url(); ?>pelanggan/delete/"+idPelanggan
   }).done(function(message) {
-    window.location.href = "<?php echo site_url(); ?>katering";
+    window.location.href = "<?php echo site_url(); ?>pelanggan";
   });
 }
-
 </script>
+
+</body>
 
 </body>
 
@@ -264,5 +237,14 @@ function deleteKatering()
 
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="<?php echo base_url();?>assets_main/js/demo.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+  // Javascript method's body can be found in assets/js/demos.js
+  demo.initDashboardPageCharts();
+
+});
+</script>
 
 </html>

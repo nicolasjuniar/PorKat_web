@@ -57,7 +57,7 @@
           </a>
         </li>
         <li>
-          <a href="<?php echo base_url('index.php/panti_belum_terverifikasi');?>">
+					<a href="<?php echo base_url();?>pelanggan">
             <i class="material-icons">person</i>
             <p>Pelanggan</p>
           </a>
@@ -104,7 +104,7 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-8">
-						<form action="" method="post" enctype="multipart/form-data">
+						<form id="formEditKatering" action="<?php echo base_url();?>katering/edit/profile" method="post" enctype="multipart/form-data">
 							<div class="card">
 								<div class="card-header" data-background-color="purple">
 									<h4 class="title">Edit Katering</h4>
@@ -169,7 +169,7 @@
 
 									<input type="hidden" name="id_katering" value="<?php echo $id_katering; ?>" />
 
-									<button type="submit" class="btn btn-primary pull-right"><?php echo "Update" ?></button>
+									<input  type="submit" class="btn btn-primary pull-right" value="Update"/>
 									<a href="<?php echo base_url('katering') ?>" class="btn btn-primary pull-right">Cancel</a>
 									<div class="clearfix"></div>
 								</form>

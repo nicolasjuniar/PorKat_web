@@ -57,7 +57,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="<?php echo base_url('index.php/panti_belum_terverifikasi');?>">
+					<a href="<?php echo base_url();?>pelanggan">
 						<i class="material-icons">person</i>
 						<p>Pelanggan</p>
 					</a>
