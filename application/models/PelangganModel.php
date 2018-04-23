@@ -62,6 +62,26 @@ class PelangganModel extends CI_Model {
     return $query->result();
   }
 
+  public function getCountSearchPelanggan($keyword)
+  {
+    $this->db->select('*');
+    $this->db->from('tbl_pelanggan');
+    $this->db->where('status','1');
+    $this->db->like('nama_lengkap',$keyword);
+    $countKatering=$this->db->count_all_results('');
+    return $countKatering;
+  }
+
+  public function getListSearchPelanggan($keyword,$number,$offset)
+  {
+    $this->db->select('*');
+    $this->db->from('tbl_pelanggan');
+    $this->db->where('status','1');
+    $this->db->like('nama_lengkap',$keyword);
+    $query=$this->db->get('',$number.$offset);
+    return $query->result();
+  }
+
   public function getPelangganById($id_pelangan){
     $this->db->select('*');
     $this->db->from('tbl_pelanggan');

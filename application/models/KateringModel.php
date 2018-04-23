@@ -131,4 +131,25 @@ class KateringModel extends CI_Model {
     $query=$this->db->get('',$number.$offset);
     return $query->result();
   }
+
+
+  public function getCountSearchKatering($keyword)
+  {
+    $this->db->select('*');
+    $this->db->from('tbl_katering');
+    $this->db->where('status','1');
+    $this->db->like('nama_katering',$keyword);
+    $countKatering=$this->db->count_all_results('');
+    return $countKatering;
+  }
+
+  public function getListSearchKatering($keyword,$number,$offset)
+  {
+    $this->db->select('*');
+    $this->db->from('tbl_katering');
+    $this->db->where('status','1');
+    $this->db->like('nama_katering',$keyword);
+    $query=$this->db->get('',$number.$offset);
+    return $query->result();
+  }
 }

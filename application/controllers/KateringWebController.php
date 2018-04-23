@@ -30,6 +30,20 @@ class KateringWebController extends CI_Controller {
     $this->load->view('KateringView',$data);
   }
 
+  public function setSearchKateringView()
+  {
+    $keyword=$this->input->post('keyword');
+    $this->checkStatus();
+    $countKatering=$this->KateringModel->getCountSearchKatering($keyword);
+    $config['base_url']=base_url().'katering/search/';
+    $config['total_rows'] = $countKatering;
+    $config['per_page'] = 10;
+    $from = $this->uri->segment(1);
+    $this->pagination->initialize($config);
+    $data['list_katering']=$this->KateringModel->getListSearchKatering($keyword,$config['per_page'],$from);
+    $this->load->view('SearchKateringView',$data);
+  }
+
   public function checkStatus()
   {
     if($this->session->userdata('status')!='login')
