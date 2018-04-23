@@ -45,12 +45,6 @@
     <div class="sidebar-wrapper">
       <ul class="nav">
         <li>
-          <a href="<?php echo base_url();?>dashboard">
-            <i class="material-icons">dashboard</i>
-            <p>Dashboard</p>
-          </a>
-        </li>
-        <li>
           <a href="<?php echo base_url();?>katering">
             <i class="material-icons">local_dining</i>
             <p>Katering</p>
@@ -128,10 +122,10 @@
                         <td><?php echo $pelanggan->alamat ?></td>
                         <td class="td-actions text-right">
                           <?php
-                          echo anchor(base_url().'katering/detail/'.$pelanggan->id_pelanggan,'<button type="button" rel="tooltip" title="Read More" class="btn btn-info btn-simple btn-xs">
+                          echo anchor(base_url().'pelanggan/detail/'.$pelanggan->id_pelanggan,'<button type="button" rel="tooltip" title="Read More" class="btn btn-info btn-simple btn-xs">
                           <i class="material-icons">visibility</i>
                           </button>');
-                          echo anchor(base_url().'katering/edit/'.$pelanggan->id_pelanggan,'<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
+                          echo anchor(base_url().'pelanggan/edit/'.$pelanggan->id_pelanggan,'<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
                           <i class="material-icons">edit</i>
                           </button>');
                           ?>
@@ -151,7 +145,7 @@
             <div class="text-center">
               <ul class="pagination pagination-info">
                 <?php
-                echo '<li><a href="javascript:void(0);">' . $this->pagination->create_links() .'</a></li>';
+                echo $this->pagination->create_links();
                 ?>
               </ul>
             </div>

@@ -44,12 +44,6 @@
 
     <div class="sidebar-wrapper">
       <ul class="nav">
-        <li>
-          <a href="<?php echo base_url();?>dashboard">
-            <i class="material-icons">dashboard</i>
-            <p>Dashboard</p>
-          </a>
-        </li>
         <li  class="active">
           <a href="<?php echo base_url();?>katering">
             <i class="material-icons">local_dining</i>

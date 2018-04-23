@@ -62,15 +62,19 @@ class KateringWebController extends CI_Controller {
 
   public function updateKateringWeb()
   {
+    $foto=$this->input->post('foto');
     $DataKatering=array(
       'id_katering'=>$this->input->post('id_katering'),
+      'id_pengguna'=>$this->input->post('id_pengguna'),
       'nama_katering'=>$this->input->post('nama_katering'),
       'no_telp'=>$this->input->post('no_telp'),
       'alamat'=>$this->input->post('alamat'),
-      'foto'=>$this->input->post('foto'),
       'longitude'=>$this->input->post('longitude'),
       'latitude'=>$this->input->post('latitude')
     );
+    if($foto!=""){
+      $DataKatering['foto']=$foto;
+    }
 
     $this->KateringModel->updateKatering($DataKatering);
 

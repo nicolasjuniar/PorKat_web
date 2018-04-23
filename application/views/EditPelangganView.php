@@ -6,7 +6,7 @@
 	<link rel="icon" type="image/png" href="<?php echo base_url();?>assets_main/img/logo.png" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Ubah Katering</title>
+	<title>Ubah Pelanggan</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 	<meta name="viewport" content="width=device-width" />
@@ -37,34 +37,34 @@
 		-->
 
 		<div class="logo">
-      <a href="<?php echo base_url('index.php/dashboard');?>" class="simple-text">
-        <?php echo $this->session->userdata('nama_admin')?>
-      </a>
-    </div>
+			<a href="<?php echo base_url('index.php/dashboard');?>" class="simple-text">
+				<?php echo $this->session->userdata('nama_admin')?>
+			</a>
+		</div>
 
-    <div class="sidebar-wrapper">
-      <ul class="nav">
-        <li  class="active">
-          <a href="<?php echo base_url();?>katering">
-            <i class="material-icons">local_dining</i>
-            <p>Katering</p>
-          </a>
-        </li>
-        <li>
+		<div class="sidebar-wrapper">
+			<ul class="nav">
+				<li>
+					<a href="<?php echo base_url();?>katering">
+						<i class="material-icons">local_dining</i>
+						<p>Katering</p>
+					</a>
+				</li>
+				<li  class="active">
 					<a href="<?php echo base_url();?>pelanggan">
-            <i class="material-icons">person</i>
-            <p>Pelanggan</p>
-          </a>
-        </li>
-        <li>
-          <a href="<?php echo base_url(); ?>logout">
-            <i class="material-icons">assignment_return</i>
-            <p>Keluar</p>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
+						<i class="material-icons">person</i>
+						<p>Pelanggan</p>
+					</a>
+				</li>
+				<li>
+					<a href="<?php echo base_url(); ?>logout">
+						<i class="material-icons">assignment_return</i>
+						<p>Keluar</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
 
 	<div class="main-panel">
 		<nav class="navbar navbar-transparent navbar-absolute">
@@ -76,7 +76,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">Edit Katering</a>
+					<a class="navbar-brand" href="#">Edit Pelanggan</a>
 				</div>
 				<div class="collapse navbar-collapse">
 
@@ -98,37 +98,44 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-8">
-						<form id="formEditKatering" action="<?php echo base_url();?>katering/edit/profile" method="post" enctype="multipart/form-data">
+						<form id="formEditPelanggan" action="<?php echo base_url();?>pelanggan/edit/profile" method="post" enctype="multipart/form-data">
 							<div class="card">
 								<div class="card-header" data-background-color="purple">
-									<h4 class="title">Edit Katering</h4>
+									<h4 class="title">Edit Pelanggan</h4>
 									<p class="category">Isi data dengan lengkap</p>
 								</div>
 								<div class="card-content">
 									<form>
+
 										<div class="row">
-											<div class="col-md-6">
+											<div class="col-md-12">
 												<div class="form-group label-floating">
-													<label class="control-label">Nama Katering</label>
-													<input type="text" class="form-control" name="nama_katering" id="nama_katering" required value="<?php echo $nama_katering; ?>" >
+													<label class="control-label">Nama Pelanggan</label>
+													<input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" required value="<?php echo $nama_lengkap; ?>" >
 												</div>
 											</div>
-											<div class="col-md-6">
+										</div>
+
+										<div class="row">
+											<div class="col-md-12">
 												<div class="form-group label-floating">
-													<label class="control-label">Id Pengguna Katering</label>
+													<label class="control-label">Id Pengguna Pelanggan</label>
 													<input type="text" class="form-control" name="id_pengguna" id="id_pengguna" required value="<?php echo $id_pengguna; ?>" >
 												</div>
 											</div>
 										</div>
 
 										<div class="row">
-											<div class="col-md-6">
+											<div class="col-md-12">
 												<div class="form-group label-floating">
 													<label class="control-label">Alamat</label>
 													<input type="text" class="form-control" name="alamat" id="alamat" required value="<?php echo $alamat; ?>" >
 												</div>
 											</div>
-											<div class="col-md-6">
+										</div>
+
+										<div class="row">
+											<div class="col-md-12">
 												<div class="form-group label-floating">
 													<label class="control-label">Nomor Telepon</label>
 													<input type="text" class="form-control" name="no_telp" id="no_telp" required value="<?php echo $no_telp; ?>" >
@@ -136,69 +143,39 @@
 											</div>
 										</div>
 
-										<div class="row">
-											<div class="col-md-6">
-												<div class="form-group label-floating">
-													<label class="control-label">Longitude</label>
-													<input type="text" class="form-control" name="longitude" id="longitude" required value="<?php echo $longitude; ?>">
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group label-floating">
-													<label class="control-label">Latitude</label>
-													<input type="text" class="form-control" name="latitude" id="latitude" required value="<?php echo $latitude; ?>">
-												</div>
-											</div>
-										</div>
+										<input type="hidden" name="id_pelanggan" value="<?php echo $id_pelanggan; ?>" />
 
-										<div class="row">
-											<div class="col-md-6">
-											</br>
-											<label>Foto Katering</label>
-											<div class="input-group">
-												<input type="file" class="btn btn-primary" name="foto" id="foto"/>
-											</div>
-										</div>
-									</div>
-
-									<input type="hidden" name="id_katering" value="<?php echo $id_katering; ?>" />
-
-									<input  type="submit" class="btn btn-primary pull-right" value="Update"/>
-									<a href="<?php echo base_url('katering') ?>" class="btn btn-primary pull-right">Cancel</a>
-									<div class="clearfix"></div>
-								</form>
+										<input  type="submit" class="btn btn-primary pull-right" value="Update"/>
+										<a href="<?php echo base_url('pelanggan') ?>" class="btn btn-primary pull-right">Cancel</a>
+										<div class="clearfix"></div>
+									</form>
+								</div>
 							</div>
-						</div>
-					</form>
-				</div>
-				<div class="col-md-4">
-					<div class="card card-profile">
-						<div class="card-avatar">
-							<a href="#pablo">
-								<img src="<?php echo base_url('foto/katering/'.$foto);?>"/>
-							</a>
-						</div>
+						</form>
+					</div>
+					<div class="col-md-4">
+						<div class="card card-profile">
 
-						<div class="content">
-							<h6 class="category text-gray">Katering</h6>
-							<h4 class="card-title"><?php echo $nama_katering; ?></h4>
-							<h4 class="card-title"><?php echo $id_katering; ?></h4>
+							<div class="content">
+								<h6 class="category text-gray">Pelanggan</h6>
+								<h4 class="card-title"><?php echo $nama_lengkap; ?></h4>
+								<h4 class="card-title"><?php echo $id_pelanggan; ?></h4>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+
+		<footer class="footer">
+			<div class="container-fluid">
+
+				<p class="copyright pull-right">
+					&copy; <script>document.write(new Date().getFullYear())</script> <a href="<?php echo base_url('index.php/dashboard');?>">Porkat Admin</a>, Nicolas Juniar Kurniawan
+				</p>
+			</div>
+		</footer>
 	</div>
-
-	<footer class="footer">
-		<div class="container-fluid">
-
-			<p class="copyright pull-right">
-				&copy; <script>document.write(new Date().getFullYear())</script> <a href="<?php echo base_url('index.php/dashboard');?>">Porkat Admin</a>, Nicolas Juniar Kurniawan
-			</p>
-		</div>
-	</footer>
-</div>
 </div>
 
 </body>

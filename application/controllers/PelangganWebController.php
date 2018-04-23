@@ -48,15 +48,30 @@ class PelangganWebController extends CI_Controller {
     $this->PelangganModel->updatePelanggan($DataPelanggan);
   }
 
-  public function getDetailKatering($id_katering){
+  public function getDetailPelanggan($id_pelanggan){
     $this->checkStatus();
-    $katering=$this->KateringModel->getKateringById($id_katering);
-    $this->load->view('DetailKateringView',$katering);
+    $pelanggan=$this->PelangganModel->getPelangganById($id_pelanggan);
+    $this->load->view('DetailPelangganView',$pelanggan);
   }
 
-  public function setEditKatering($id_katering){
+  public function setEditPelanggan($id_pelanggan){
     $this->checkStatus();
-    $katering=$this->KateringModel->getKateringById($id_katering);
-    $this->load->view('EditKateringView',$katering);
+    $pelanggan=$this->PelangganModel->getPelangganById($id_pelanggan);
+    $this->load->view('EditPelangganView',$pelanggan);
+  }
+
+  public function updatePelangganWeb()
+  {
+    $DataPelanggan=array(
+      'id_pelanggan'=>$this->input->post('id_pelanggan'),
+      'nama_lengkap'=>$this->input->post('nama_lengkap'),
+      'id_pengguna'=>$this->input->post('id_pengguna'),
+      'no_telp'=>$this->input->post('no_telp'),
+      'alamat'=>$this->input->post('alamat')
+    );
+
+    $this->PelangganModel->updatePelanggan($DataPelanggan);
+
+    redirect(base_url('pelanggan'));
   }
 }

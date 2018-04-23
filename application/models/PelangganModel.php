@@ -12,10 +12,10 @@ class PelangganModel extends CI_Model {
     $num_rows=$this->db->count_all_results('');
     if($num_rows==0)
     {
-        return NULL;
+      return NULL;
     }
     else
-      return $DataPelanggan;
+    return $DataPelanggan;
   }
 
   public function cekUsername($id_pengguna)
@@ -60,5 +60,13 @@ class PelangganModel extends CI_Model {
     $this->db->where('status','1');
     $query=$this->db->get('',$number.$offset);
     return $query->result();
+  }
+
+  public function getPelangganById($id_pelangan){
+    $this->db->select('*');
+    $this->db->from('tbl_pelanggan');
+    $this->db->where('id_pelanggan',$id_pelangan);
+    $pelanggan=$this->db->get('')->row_array();
+    return $pelanggan;
   }
 }

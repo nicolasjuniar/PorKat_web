@@ -102,3 +102,6 @@ $route['katering/add/no_verifikasi']['POST']='KateringWebController/addkatering'
 $route['pelanggan']='PelangganWebController/setPelangganView';
 $route['pelanggan/(:any)']='PelangganWebController/setPelangganView/$1';
 $route['pelanggan/delete/(:num)']['GET']='PelangganWebController/deletePelanggan/$1';
+$route['pelanggan/detail/(:num)']='PelangganWebController/getDetailPelanggan/$1';
+$route['pelanggan/edit/(:num)']='PelangganWebController/setEditPelanggan/$1';
+$route['pelanggan/edit/profile']['POST']='PelangganWebController/updatePelangganWeb';
