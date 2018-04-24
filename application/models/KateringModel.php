@@ -123,12 +123,13 @@ class KateringModel extends CI_Model {
     return $countKatering;
   }
 
-  public function getListKatering($number,$offset)
+  public function getListKatering($offset,$from)
   {
     $this->db->select('*');
     $this->db->from('tbl_katering');
     $this->db->where('status','1');
-    $query=$this->db->get('',$number.$offset);
+    $this->db->limit($offset,$from);
+    $query=$this->db->get('');
     return $query->result();
   }
 
@@ -149,7 +150,8 @@ class KateringModel extends CI_Model {
     $this->db->from('tbl_katering');
     $this->db->where('status','1');
     $this->db->like('nama_katering',$keyword);
-    $query=$this->db->get('',$number.$offset);
+    $this->db->limit($number,$offset);
+    $query=$this->db->get('');
     return $query->result();
   }
 }

@@ -58,7 +58,8 @@ class PelangganModel extends CI_Model {
     $this->db->select('*');
     $this->db->from('tbl_pelanggan');
     $this->db->where('status','1');
-    $query=$this->db->get('',$number.$offset);
+    $this->db->limit($number,$offset);
+    $query=$this->db->get('');
     return $query->result();
   }
 
@@ -78,7 +79,8 @@ class PelangganModel extends CI_Model {
     $this->db->from('tbl_pelanggan');
     $this->db->where('status','1');
     $this->db->like('nama_lengkap',$keyword);
-    $query=$this->db->get('',$number.$offset);
+    $this->db->limit($number,$offset);
+    $query=$this->db->get('');
     return $query->result();
   }
 

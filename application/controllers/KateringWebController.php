@@ -21,12 +21,13 @@ class KateringWebController extends CI_Controller {
   {
     $this->checkStatus();
     $countKatering=$this->KateringModel->getCountKatering();
-    $config['base_url']=base_url().'katering/';
+
+    $config['base_url']=base_url().'KateringWebController/setKateringView/';
     $config['total_rows'] = $countKatering;
     $config['per_page'] = 10;
-    $from = $this->uri->segment(1);
+    $page = $this->uri->segment(3);
     $this->pagination->initialize($config);
-    $data['list_katering']=$this->KateringModel->getListKatering($config['per_page'],$from);
+    $data['list_katering']=$this->KateringModel->getListKatering($config["per_page"],$page);
     $this->load->view('KateringView',$data);
   }
 
@@ -35,10 +36,10 @@ class KateringWebController extends CI_Controller {
     $keyword=$this->input->post('keyword');
     $this->checkStatus();
     $countKatering=$this->KateringModel->getCountSearchKatering($keyword);
-    $config['base_url']=base_url().'katering/search/';
+    $config['base_url']=base_url().'KateringWebController/setSearchKateringView/';
     $config['total_rows'] = $countKatering;
     $config['per_page'] = 10;
-    $from = $this->uri->segment(1);
+    $from = $this->uri->segment(3);
     $this->pagination->initialize($config);
     $data['list_katering']=$this->KateringModel->getListSearchKatering($keyword,$config['per_page'],$from);
     $this->load->view('SearchKateringView',$data);

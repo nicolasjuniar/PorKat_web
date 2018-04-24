@@ -21,10 +21,10 @@ class PelangganWebController extends CI_Controller {
   {
     $this->checkStatus();
     $countPelanggan=$this->PelangganModel->getCountPelanggan();
-    $config['base_url']=base_url().'pelanggan/';
+    $config['base_url']=base_url().'PelangganWebController/setPelangganView/';
     $config['total_rows'] = $countPelanggan;
     $config['per_page'] = 10;
-    $from = $this->uri->segment(1);
+    $from = $this->uri->segment(3);
     $this->pagination->initialize($config);
     $data['list_pelanggan']=$this->PelangganModel->getListPelanggan($config['per_page'],$from);
     $this->load->view('PelangganView',$data);
@@ -35,10 +35,10 @@ class PelangganWebController extends CI_Controller {
     $keyword=$this->input->post('keyword');
     $this->checkStatus();
     $countPelanggan=$this->PelangganModel->getCountSearchPelanggan($keyword);
-    $config['base_url']=base_url().'pelanggan/search/';
+    $config['base_url']=base_url().'PelangganWebController/setSearchPelangganView/';
     $config['total_rows'] = $countPelanggan;
     $config['per_page'] = 10;
-    $from = $this->uri->segment(2);
+    $from = $this->uri->segment(3);
     $this->pagination->initialize($config);
     $data['list_pelanggan']=$this->PelangganModel->getListSearchPelanggan($keyword,$config['per_page'],$from);
     $this->load->view('PelangganView',$data);
