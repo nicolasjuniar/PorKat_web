@@ -15,6 +15,12 @@ class PesanModel extends CI_Model {
     $this->db->update('tbl_pesan',$Pesan);
   }
 
+  public function updateDetailPesan($DetailPesan)
+  {
+    $this->db->where('id_detailpesan',$DetailPesan['id_detailpesan']);
+    $this->db->update('tbl_detailpesan',$DetailPesan);
+  }
+
   public function getAllPesanPelanggan($id_pelanggan)
   {
     $this->db->select('p.id_pesan,k.nama_katering,p.tgl_mulai,p.tgl_selesai,p.alamat,p.catatan,p.nota,p.total,p.status');

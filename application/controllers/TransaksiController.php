@@ -131,6 +131,27 @@ class TransaksiController extends CI_Controller {
     exit;
   }
 
+  public function doneSendFood()
+  {
+    $DetailPesan=array(
+      'id_detailpesan'=>$this->input->Post('id_detailpesan'),
+      'status'=>'sudah diantar'
+    );
+
+    $this->PesanModel->updateDetailPesan($DetailPesan);
+
+    $response=array(
+      'message'=>'berhasil mengirimkan makanan'
+    );
+
+    $this->output
+    ->set_status_header(200)
+    ->set_content_type('application/json', 'utf-8')
+    ->set_output(json_encode($response, JSON_PRETTY_PRINT))
+    ->_display();
+    exit;
+  }
+
   public function getListMenuPesanan()
   {
     $id_pesan=$this->input->get('id_pesan');

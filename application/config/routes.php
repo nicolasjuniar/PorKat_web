@@ -86,6 +86,7 @@ $route['menu/update']['PUT']='KelolaMenuController/UpdateMenu';
 $route['menu/delete']['PUT']='KelolaMenuController/UpdateStatusMenu';
 $route['katering/update/photo']['PUT']='KateringController/updatePhotoKatering';
 $route['katering/pesan/list']['GET']='TransaksiController/GetListPesanKatering';
+$route['katering/sendfood/done']['POST']='TransaksiController/doneSendFood';
 
 ///////////////////////////////////////////////////WEB///////////////////////////////////////////////////////////
 $route['login']='LoginWebController';
