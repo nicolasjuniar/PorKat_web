@@ -57,6 +57,12 @@
           </a>
         </li>
         <li>
+          <a href="<?php echo base_url();?>transaksi">
+            <i class="material-icons">attach_money</i>
+            <p>Transaksi</p>
+          </a>
+        </li>
+        <li>
           <a href="<?php echo base_url(); ?>logout">
             <i class="material-icons">assignment_return</i>
             <p>Keluar</p>

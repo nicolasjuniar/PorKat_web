@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,11 +7,10 @@
   <link rel="icon" type="image/png" href="<?php echo base_url();?>assets_main/img/logo.png" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-  <title>Detail Pelanggan</title>
+  <title>Transaksi</title>
 
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
   <meta name="viewport" content="width=device-width" />
-
 
   <!-- Bootstrap core CSS     -->
   <link href="<?php echo base_url();?>assets_main/css/bootstrap.min.css" rel="stylesheet" />
@@ -29,11 +29,12 @@
 <body>
 
   <div class="wrapper">
+
     <div class="sidebar" data-color="purple" data-image="<?php echo base_url();?>assets_main/img/sidebar-1.jpg">
       <!--
       Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
-      Tip 2: you can also add an image using data-image tag
 
+      Tip 2: you can also add an image using data-image tag
     -->
 
     <div class="logo">
@@ -50,13 +51,13 @@
             <p>Katering</p>
           </a>
         </li>
-        <li class="active">
-					<a href="<?php echo base_url();?>pelanggan">
+        <li>
+          <a href="<?php echo base_url();?>pelanggan">
             <i class="material-icons">person</i>
             <p>Pelanggan</p>
           </a>
         </li>
-        <li>
+        <li class="active">
           <a href="<?php echo base_url();?>transaksi">
             <i class="material-icons">attach_money</i>
             <p>Transaksi</p>
@@ -82,18 +83,8 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" >Detail Pelanggan</a>
         </div>
         <div class="collapse navbar-collapse">
-          <form class="navbar-form navbar-right" role="search">
-            <div class="form-group  is-empty">
-              <input type="text" class="form-control" placeholder="Search">
-              <span class="material-input"></span>
-            </div>
-            <button type="submit" class="btn btn-white btn-round btn-just-icon">
-              <i class="material-icons">search</i><div class="ripple-container"></div>
-            </button>
-          </form>
         </div>
       </div>
     </nav>
@@ -101,56 +92,53 @@
     <div class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-12">
             <div class="card">
               <div class="card-header" data-background-color="purple">
-                <h4 class="title"><?php echo $nama_lengkap?></h4>
-                <p class="category">Detail Pelanggan</p>
+                <h4 class="title">Transaksi</h4>
+                <p class="category">Data Semua Transaksi</p>
               </div>
-              <div class="card-content">
-                <form>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group label-floating">
-                        <label class="control-label">Id Pengguna</label>
-                        <input type="text" value="<?php echo $id_pengguna; ?>" class="form-control" disabled>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group label-floating">
-                        <label class="control-label">No Telepon</label>
-                        <input type="text" value="<?php echo $no_telp; ?>" class="form-control" disabled>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group label-floating">
-                        <label class="control-label">Alamat</label>
-                        <input type="text" value="<?php echo $alamat; ?>" class="form-control" disabled>
-                      </div>
-                    </div>
-                  </div>
+              <div class="card-content table-responsive">
+                <table class="table">
+                  <thead class="text-primary">
+                    <th>Nama Pelangan</th>
+                    <th>Total</th>
+                    <th>Nota</th>
+                    <th>Action</th>
+                  </thead>
+                  <?php
+                  $start = 0;
+                  foreach ($list_transaksi as $transaksi)
+                  {
+                    ?>
+                    <tbody>
+                      <tr>
+                        <td><?php echo $transaksi->nama_lengkap ?></td>
+                        <td><?php echo $transaksi->total ?></td>
+                        <td><img src="<?php echo base_url('foto/nota/'.$transaksi->nota);?>" class="img_nota" width="200px" height="125px"></td>
+                        <td class="td-actions text-right">
+                          <button type="button" rel="tooltip" title="kkonfirmasi" data-toggle="modal" onclick="getIdPesan(<?php echo $transaksi->id_pesan ?>)" data-target="#confirmModal" class="btn btn-info btn-simple btn-xs">
+                          <i class="material-icons">done</i>
+                          </button>
+                          <button type="button" rel="tooltip" title="Tolak" class="btn btn-danger btn-simple btn-xs" data-toggle="modal" data-target="#rejectModal" onclick="getIdPesan(<?php echo $transaksi->id_pesan ?>)">
+                            <i class="material-icons">close</i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                    <?php
+                  }
+                  ?>
+                </table>
 
-                  <div class="clearfix"></div>
-                </form>
               </div>
             </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card card-profile">
-
-              <div class="content">
-                <h6 class="category text-gray">Pelanggan</h6>
-                <h4 class="card-title"><?php echo $nama_lengkap; ?></h4>
-                <h4 class="card-title"><?php echo $id_pelanggan; ?></h4>
+            <div class="text-center">
+              <ul class="pagination pagination-info">
                 <?php
-                echo anchor(base_url('pelanggan/edit/'.$id_pelanggan),'<button href="#pablo" class="btn btn-primary btn-round">Edit Data</button>');
+                echo $this->pagination->create_links();
                 ?>
-                <button class="btn btn-danger btn-round" data-toggle="modal" data-target="#myModal" onclick="getIdPelanggan(<?php echo $id_pelanggan?>)">Hapus</button>
-              </div>
+              </ul>
             </div>
           </div>
         </div>
@@ -170,18 +158,18 @@
 
 
 <!-- Sart Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="rejectModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">Peringatan</h4>
       </div>
       <div class="modal-body">
-        <p> Apakah anda yakin menghapus pelanggan ini?
+        <p> Apakah anda yakin menolak transaksi ini?
         </p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default btn-simple" onclick="deletePelanggan()">Ya</button>
+        <button type="button" class="btn btn-default btn-simple" onclick="rejectTransaksi()">Ya</button>
         <button type="button" class="btn btn-danger btn-simple" data-dismiss="modal">Tidak</button>
       </div>
     </div>
@@ -189,27 +177,58 @@
 </div>
 <!--  End Modal -->
 
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Peringatan</h4>
+      </div>
+      <div class="modal-body">
+        <p> Apakah anda yakin mengkonfirmasi transaksi ini?
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-simple" onclick="confirmTransaksi()">Ya</button>
+        <button type="button" class="btn btn-danger btn-simple" data-dismiss="modal">Tidak</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 </div>
 
 <script type="text/javascript">
 
-var idPelanggan;
+var idPesan;
 
-function getIdPelanggan(id)
+function getIdPesan(id)
 {
-  idPelanggan=id;
+  idPesan=id;
 }
 
-function deletePelanggan()
+function rejectTransaksi()
 {
   $.ajax({
     type: "GET",
-    url: "<?php echo base_url(); ?>pelanggan/delete/"+idPelanggan
+    url: "<?php echo base_url(); ?>transaksi/reject/"+idPesan
   }).done(function(message) {
-    window.location.href = "<?php echo site_url(); ?>pelanggan";
+    window.location.href = "<?php echo site_url(); ?>transaksi";
+  });
+}
+
+function confirmTransaksi()
+{
+  $.ajax({
+    type: "GET",
+    url: "<?php echo base_url(); ?>transaksi/confirm/"+idPesan
+  }).done(function(message) {
+    window.location.href = "<?php echo site_url(); ?>transaksi";
   });
 }
 </script>
+
+</body>
 
 </body>
 
@@ -232,5 +251,14 @@ function deletePelanggan()
 
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="<?php echo base_url();?>assets_main/js/demo.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+  // Javascript method's body can be found in assets/js/demos.js
+  demo.initDashboardPageCharts();
+
+});
+</script>
 
 </html>

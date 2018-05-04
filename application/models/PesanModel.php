@@ -93,4 +93,25 @@ class PesanModel extends CI_Model {
     $ListMakanan=$this->db->get('')->result_array();
     return $ListMakanan;
   }
+
+  public function getListPesan($number,$offset)
+  {
+    $this->db->select('psn.id_pesan,plg.nama_lengkap,psn.nota,psn.total');
+    $this->db->from('tbl_pesan psn');
+    $this->db->join('tbl_pelanggan plg','psn.id_pelanggan=plg.id_pelanggan');
+    $this->db->where('psn.status','konfirmasi nota');
+    $this->db->limit($number,$offset);
+    $query=$this->db->get('');
+    return $query->result();
+  }
+
+  public function getCountPesan()
+  {
+    $this->db->select('psn.id_pesan,plg.nama_lengkap,psn.nota,psn.total');
+    $this->db->from('tbl_pesan psn');
+    $this->db->join('tbl_pelanggan plg','psn.id_pelanggan=plg.id_pelanggan');
+    $this->db->where('psn.status','konfirmasi nota');
+    $countKatering=$this->db->count_all_results('');
+    return $countKatering;
+  }
 }

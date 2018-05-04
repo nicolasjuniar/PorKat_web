@@ -8,6 +8,7 @@ class PelangganModel extends CI_Model {
     $this->db->from('tbl_pelanggan');
     $this->db->where('id_pengguna',$DataLogin['id_pengguna']);
     $this->db->where('katasandi',$DataLogin['katasandi']);
+    $this->db->where('status','1');
     $DataPelanggan=$this->db->get('')->row_array();
     $num_rows=$this->db->count_all_results('');
     if($num_rows==0)
