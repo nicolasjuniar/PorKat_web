@@ -61,7 +61,7 @@ class LoginWebController extends CI_Controller {
       if($this->form_validation->run())
       {
         $datasession = $this->AdminModel->getDataAdmin($DataLogin);
-
+        
         $this->session->set_userdata($datasession);
         $this->session->set_userdata('status','login');
       }

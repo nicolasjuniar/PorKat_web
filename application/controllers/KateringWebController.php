@@ -49,7 +49,7 @@ class KateringWebController extends CI_Controller {
   {
     if($this->session->userdata('status')!='login')
     {
-      redirect(base_url().'login');
+      redirect('login');
     }
   }
 

@@ -24,8 +24,8 @@ class AdminModel extends CI_Model {
   {
     $this->db->select('*');
     $this->db->from('tbl_admin');
-    $this->db->where('id_pengguna',$DataLogin["id_pengguna"]);
-    $this->db->where('katasandi',$DataLogin["katasandi"]);
+    $this->db->where('id_pengguna',$DataLogin['id_pengguna']);
+    $this->db->where('katasandi',$DataLogin['katasandi']);
     $DataAdmin=$this->db->get('')->row_array();
     return $DataAdmin;
   }

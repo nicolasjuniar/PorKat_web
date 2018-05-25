@@ -96,7 +96,7 @@ class KateringModel extends CI_Model {
     $DataKatering=[];
     $this->db->select('k.id_katering,k.nama_katering,k.no_telp,k.alamat,k.foto,k.rating,k.longitude,k.latitude,coalesce(sum(u.rating)*count(u.id_katering),0) as total_rate');
     $this->db->from('tbl_katering k');
-    $this->db->join('tbl_ulasan u','k.id_katering=u.id_katering','left');
+    $this->db->join('tbl_ulasan u','k.id_katering=u.id_katering','right');
     $this->db->where('k.status','1');
     $this->db->order_by('total_rate','desc');
     $this->db->group_by('k.id_katering');
@@ -109,7 +109,7 @@ class KateringModel extends CI_Model {
     $DataKatering=[];
     $this->db->select('k.id_katering,k.nama_katering,k.no_telp,k.alamat,k.foto,k.rating,k.longitude,k.latitude,sqrt(pow(k.longitude-'.$location["longitude"].',2)+pow(k.latitude-'.$location["latitude"].',2)) as jarak');
     $this->db->from('tbl_katering k');
-    $this->db->join('tbl_ulasan u','k.id_katering=u.id_katering','left');
+    $this->db->join('tbl_ulasan u','k.id_katering=u.id_katering','right');
     $this->db->where('k.status',1);
     $this->db->order_by('jarak','asc');
     $this->db->group_by('k.id_katering');
