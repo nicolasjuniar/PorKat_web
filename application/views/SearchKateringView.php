@@ -134,9 +134,9 @@
                           echo anchor(base_url().'katering/detail/'.$katering->id_katering,'<button type="button" rel="tooltip" title="Read More" class="btn btn-info btn-simple btn-xs">
                           <i class="material-icons">visibility</i>
                           </button>');
-                          echo anchor(base_url().'katering/edit/'.$katering->id_katering,'<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-                          <i class="material-icons">edit</i>
-                          </button>');
+                          // echo anchor(base_url().'katering/edit/'.$katering->id_katering,'<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
+                          // <i class="material-icons">edit</i>
+                          // </button>');
                           ?>
                           <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs" data-toggle="modal" data-target="#myModal" onclick="getIdKatering(<?php echo $katering->id_katering ?>)">
                             <i class="material-icons">close</i>

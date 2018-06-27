@@ -131,9 +131,9 @@
                           echo anchor(base_url().'pelanggan/detail/'.$pelanggan->id_pelanggan,'<button type="button" rel="tooltip" title="Read More" class="btn btn-info btn-simple btn-xs">
                           <i class="material-icons">visibility</i>
                           </button>');
-                          echo anchor(base_url().'pelanggan/edit/'.$pelanggan->id_pelanggan,'<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-                          <i class="material-icons">edit</i>
-                          </button>');
+                          // echo anchor(base_url().'pelanggan/edit/'.$pelanggan->id_pelanggan,'<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
+                          // <i class="material-icons">edit</i>
+                          // </button>');
                           ?>
                           <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs" data-toggle="modal" data-target="#myModal" onclick="getIdPelanggan(<?php echo $pelanggan->id_pelanggan ?>)">
                             <i class="material-icons">close</i>

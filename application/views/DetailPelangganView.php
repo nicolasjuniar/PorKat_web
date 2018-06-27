@@ -147,7 +147,7 @@
                 <h4 class="card-title"><?php echo $nama_lengkap; ?></h4>
                 <h4 class="card-title"><?php echo $id_pelanggan; ?></h4>
                 <?php
-                echo anchor(base_url('pelanggan/edit/'.$id_pelanggan),'<button href="#pablo" class="btn btn-primary btn-round">Edit Data</button>');
+                // echo anchor(base_url('pelanggan/edit/'.$id_pelanggan),'<button href="#pablo" class="btn btn-primary btn-round">Edit Data</button>');
                 ?>
                 <button class="btn btn-danger btn-round" data-toggle="modal" data-target="#myModal" onclick="getIdPelanggan(<?php echo $id_pelanggan?>)">Hapus</button>
               </div>

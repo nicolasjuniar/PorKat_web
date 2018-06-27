@@ -181,7 +181,7 @@
                 <h4 class="card-title"><?php echo $nama_katering; ?></h4>
                 <h4 class="card-title"><?php echo $id_katering; ?></h4>
                 <?php
-                echo anchor(base_url('katering/edit/'.$id_katering),'<button href="#pablo" class="btn btn-primary btn-round">Edit Data</button>');
+                // echo anchor(base_url('katering/edit/'.$id_katering),'<button href="#pablo" class="btn btn-primary btn-round">Edit Data</button>');
                 ?>
                 <button class="btn btn-danger btn-round" data-toggle="modal" data-target="#myModal" onclick="getIdKatering(<?php echo $id_katering?>)">Hapus</button>
               </div>
