@@ -76,6 +76,7 @@ class PesanModel extends CI_Model {
     $this->db->where('psn.id_katering',$id_katering);
     $this->db->where('dtl_psn.waktu_pengantaran between "'.date("Y-m-d").'" and "'.date("Y-m-d", time() + 86400).'"');
     $this->db->where('dtl_psn.status','belum diantar');
+    $this->db->where('psn.status','sedang berlangsung');
     $this->db->order_by('dtl_psn.waktu_pengantaran','asc');
     $ListPesan=$this->db->get('')->result_array();
     return $ListPesan;

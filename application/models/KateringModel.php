@@ -94,7 +94,7 @@ class KateringModel extends CI_Model {
   public function getAllKateringByRating()
   {
     $DataKatering=[];
-    $this->db->select('k.id_katering,k.nama_katering,k.no_telp,k.alamat,k.foto,k.rating,k.longitude,k.latitude,coalesce(sum(u.rating)*count(u.id_katering),0) as total_rate');
+    $this->db->select('k.id_katering,k.nama_katering,k.no_telp,k.alamat,k.foto,k.rating,k.longitude,k.latitude,k.rating as total_rate');
     $this->db->from('tbl_katering k');
     $this->db->join('tbl_ulasan u','k.id_katering=u.id_katering','right');
     $this->db->where('k.status','1');

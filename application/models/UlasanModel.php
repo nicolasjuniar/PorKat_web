@@ -53,10 +53,9 @@ class UlasanModel extends CI_Model {
     return $id_katering;
   }
 
-  public function deleteUlasan($id_ulasan)
+  public function deleteUlasan($id_ulasan,$id_katering)
   {
     $this->load->model('KateringModel');
-    $id_katering=$this->getIdKatering($id_ulasan);
     $this->KateringModel->updateRating($id_katering);
 
     $this->db->where('id_ulasan',$id_ulasan);

@@ -74,10 +74,10 @@ class KelolaUlasanController extends CI_Controller {
 
   public function DeleteUlasan($id_ulasan)
   {
-    $id_katering=$this->input->post('id_katering');
-    $id_pelanggan=$this->input->post('id_pelanggan');
+    $id_katering=$this->input->get('id_katering');
 
-    $this->UlasanModel->deleteUlasan($id_ulasan);
+    $this->UlasanModel->deleteUlasan($id_ulasan,$id_katering);
+    $this->KateringModel->updateRating($id_katering);
     $response=array(
       'message'=>'Ulasan berhasil dihapus'
     );

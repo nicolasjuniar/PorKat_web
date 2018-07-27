@@ -82,7 +82,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <button type="button" class="btn btn-primary btn-round" data-toggle="modal" data-target="#addKateringModal">
+          <button type="button" class="btn btn-primary btn-round" data-toggle="modal" data-target="#addKateringModal" onClick="generateRandomNoVerification()">
             Tambah Katering
           </button>
         </div>
@@ -225,6 +225,11 @@ var idKatering;
 function getIdKatering(id)
 {
   idKatering=id;
+}
+
+function generateRandomNoVerification()
+{
+  document.getElementById("no_verifikasi").value = Math.floor(100000 + Math.random() * 900000);
 }
 
 function deleteKatering()
